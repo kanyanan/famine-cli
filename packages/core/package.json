@@ -17,11 +17,11 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.npmmirror.com/",
+    "registry": "https://registry.npmjs.org",
     "access": "public"
   },
   "scripts": {
     "test": "node ./__tests__/core.test.js"
   },
-  "gitHead": "1179ead18c00f9ab95b8c6b766161c5ebe5d8a6d"
+  "gitHead": "0836b6f5ed8a3f3e952af0668cd45724b92c3e21"
 }
