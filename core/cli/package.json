@@ -5,7 +5,7 @@
   "author": "kanyanan <1484965354@qq.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/core.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -23,5 +23,17 @@
   "scripts": {
     "test": "node ./__tests__/core.test.js"
   },
-  "gitHead": "a2112b5b300fe99ae905ba68ba8398867c63817b"
+  "gitHead": "a2112b5b300fe99ae905ba68ba8398867c63817b",
+  "dependencies": {
+    "@famine-cli/log": "file:../../utils/log",
+    "@famine-cli/get-npm-info": "file:../../utils/get-npm-info",
+    "dotenv": "^16.4.7",
+    "import-local": "^3.2.0",
+    "minimist": "^1.2.8",
+    "npmlog": "^7.0.1",
+    "path-exists": "^5.0.0",
+    "root-check": "^1.0.0",
+    "semver": "^7.7.1",
+    "user-home": "^2.0.0"
+  }
 }

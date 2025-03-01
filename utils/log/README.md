@@ -1,11 +1,11 @@
-# `@famine-cli/utils`
+# `@famine-cli/log`
 
 > TODO: description
 
 ## Usage
 
 ```
-const utils = require('@famine-cli/utils');
+const log = require('@famine-cli/log');
 
 // TODO: DEMONSTRATE API
 ```
