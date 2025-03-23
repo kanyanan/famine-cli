@@ -25,8 +25,11 @@
   },
   "gitHead": "a2112b5b300fe99ae905ba68ba8398867c63817b",
   "dependencies": {
-    "@famine-cli/log": "file:../../utils/log",
     "@famine-cli/get-npm-info": "file:../../utils/get-npm-info",
+    "@famine-cli/log": "file:../../utils/log",
+    "@famine-cli/init": "file:../../commands/init",
+    "colors": "^1.4.0",
+    "commander": "^13.1.0",
     "dotenv": "^16.4.7",
     "import-local": "^3.2.0",
     "minimist": "^1.2.8",

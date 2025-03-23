@@ -11,6 +11,8 @@ const userHome = require("user-home");
 const minimist = require("minimist");
 const dotenv = require("dotenv");
 const { getNpmLatestVersion } = require("@famine-cli/get-npm-info");
+const { program } = require("commander");
+const init = require("@famine-cli/init");
 
 module.exports = core;
 
@@ -88,15 +90,55 @@ async function checkGlobalUpdate() {
   }
 }
 
+// 注册命令
+function registerCommand() {
+  program
+    .name(Object.keys(pkg.bin)[0])
+    .usage("<command> [option]")
+    .version(pkg.version)
+    .option("-d --debug", "是否开启debug模式", false);
+
+  // 注册init命令
+  program
+    .command("init [projectName]")
+    .option("-f --force", "是否强制初始化", false)
+    .action((projectName, cmdObj) => {
+      init(projectName, cmdObj);
+    });
+
+  // 监听是否开启debug模式
+  program.on("option:debug", () => {
+    if (program.getOptionValue("debug")) {
+      process.env.LOG_LEVEL = "verbose";
+    } else {
+      process.env.LOG_LEVEL = "info";
+    }
+    log.level = process.env.LOG_LEVEL;
+  });
+
+  // 监听未知命令
+  program.on("command:*", (obj) => {
+    // 可用命令
+    const availableCommands = program.commands.filter((cmd) => cmd.name());
+    log.error("未知命令：", obj);
+    if (availableCommands.length) {
+      log.info("当前可用命令：", availableCommands.join(","));
+    }
+  });
+
+  program.parse(process.argv);
+}
+
 function core() {
   try {
     checkPkgVersion();
     checkNodeVersion();
     checkRoot();
     checkUserHomeExist();
-    checkInputArgs();
+    // checkInputArgs();
     checkEnv();
     checkGlobalUpdate();
+    registerCommand();
   } catch (e) {
     log.error(e.message);
   }
